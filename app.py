@@ -4,7 +4,6 @@ from langchain.chains import RetrievalQA
 from langchain.prompts import PromptTemplate
 from langchain_openai import ChatOpenAI
 from dotenv import load_dotenv
-from openai import OpenAI
 import os
 from langchain_community.vectorstores import FAISS
 
@@ -19,8 +18,7 @@ except Exception:
 
 # -------------------- Load Environment Variables --------------------
 load_dotenv()
-OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
-client = OpenAI(api_key=OPENAI_API_KEY)
+OPENROUTER_API_KEY = os.getenv("OPENROUTER_API_KEY")
 
 # -------------------- FAISS Vectorstore Path ------------------------
 DB_FAISS_PATH = "vectorstore/db_faiss"
@@ -55,7 +53,8 @@ def set_custom_prompt(template):
 def load_LLM(model_choice):
     llm = ChatOpenAI(
         model=model_choice,
-        openai_api_key=OPENAI_API_KEY,
+        openai_api_key=OPENROUTER_API_KEY,
+        openai_api_base="https://openrouter.ai/api/v1",
         temperature=0.5,
         max_tokens=512,
     )
@@ -187,10 +186,11 @@ def app():
 
     model_choice = st.sidebar.selectbox(
         "Choose LLM Model",
-        [ "gpt-4o-mini",
-        "gpt-4o",
-        "gpt-4.1",
-        "gpt-4.1-mini",
+        [
+            "x-ai/grok-4-fast",
+            "gpt-4o-mini",
+            "anthropic/claude-3.5-sonnet",
+            "mistralai/mistral-7b-instruct"
         ],
         index=0
     )
