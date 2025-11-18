@@ -55,8 +55,7 @@ def set_custom_prompt(template):
 def load_LLM(model_choice):
     llm = ChatOpenAI(
         model=model_choice,
-        openai_api_key=OPENROUTER_API_KEY,
-        openai_api_base="https://openrouter.ai/api/v1",
+        openai_api_key=OPENAI_API_KEY,
         temperature=0.5,
         max_tokens=512,
     )
