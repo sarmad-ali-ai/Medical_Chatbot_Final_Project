@@ -187,11 +187,10 @@ def app():
 
     model_choice = st.sidebar.selectbox(
         "Choose LLM Model",
-        [
-            "x-ai/grok-4-fast",
-            "gpt-4o-mini",
-            "anthropic/claude-3.5-sonnet",
-            "mistralai/mistral-7b-instruct"
+        [ "gpt-4o-mini",
+        "gpt-4o",
+        "gpt-4.1",
+        "gpt-4.1-mini",
         ],
         index=0
     )
