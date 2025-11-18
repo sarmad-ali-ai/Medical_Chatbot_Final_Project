@@ -4,6 +4,7 @@ from langchain.chains import RetrievalQA
 from langchain.prompts import PromptTemplate
 from langchain_openai import ChatOpenAI
 from dotenv import load_dotenv
+from openai import OpenAI
 import os
 from langchain_community.vectorstores import FAISS
 
@@ -18,7 +19,8 @@ except Exception:
 
 # -------------------- Load Environment Variables --------------------
 load_dotenv()
-OPENROUTER_API_KEY = os.getenv("OPENROUTER_API_KEY")
+OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
+client = OpenAI(api_key=OPENAI_API_KEY)
 
 # -------------------- FAISS Vectorstore Path ------------------------
 DB_FAISS_PATH = "vectorstore/db_faiss"
